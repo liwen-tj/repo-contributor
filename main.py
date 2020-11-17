@@ -41,7 +41,9 @@ def commonContributors(p1, p2):
 
 
 if __name__ == '__main__':
-    data = getData()
+    # data = getData()
+    with open("projects.pkl", "rb") as f:
+        data = pickle.load(f)
     # N = len(data)
     #
     # intersects = []
@@ -51,3 +53,4 @@ if __name__ == '__main__':
     #         if cc is not None:
     #             intersects.append(cc)
     # print(intersects)
+    # 90d6ab8b868448f51d4207781399fd573cb00bf7

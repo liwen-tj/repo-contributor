@@ -15,7 +15,8 @@ def getStatsContributors(address, retryTime=5, retryInterval=1):
         data = None
         for _ in range(retryTime):
             try:
-                resp = requests.get(url, params)
+                headers = {'Authorization': 'token 90d6ab8b868448f51d4207781399fd573cb00bf7'}
+                resp = requests.get(url, params, headers=headers)
                 data = resp.json()
                 resp.close()
                 break
@@ -52,4 +53,4 @@ def getStatsContributors(address, retryTime=5, retryInterval=1):
     return res
 
 
-getStatsContributors("kubernetes/kubernetes")
+# getStatsContributors("helm/helm")
