@@ -53,4 +53,12 @@ def getStatsContributors(address, retryTime=5, retryInterval=1):
     return res
 
 
+def getInfoFromLogin(login):
+    headers = {'Authorization': 'token 90d6ab8b868448f51d4207781399fd573cb00bf7'}
+    resp = requests.get(f"https://api.github.com/users/{login}", headers=headers)
+    data = resp.json()
+    return data['name'], data['email']
+
+
 # getStatsContributors("helm/helm")
+getInfoFromLogin("crosbymichael")

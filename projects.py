@@ -3169,7 +3169,7 @@ function loadScripts(){document.querySelectorAll("script[data-type='lazy']").for
         "gRPC": "https://github.com/grpc/grpc-go",
         "NATS": "https://github.com/nats-io/nats-server",
         "OpenTracing": "https://github.com/opentracing/opentracing-go",
-        "SPIFFE": "https://github.com/spiffe/spire",
+        "SPIFFE": "https://github.com/spiffe/spiffe",
         "Thanos": "https://github.com/thanos-io/thanos"
     }
 

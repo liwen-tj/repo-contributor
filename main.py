@@ -1,10 +1,6 @@
-from projects import getCNCFProjects
-from contributors import getStatsContributors
 import pickle
 
-
-#
-# projects =
+# data =
 # [
 #     {
 #         'project': 'hypertrons',
@@ -12,45 +8,30 @@ import pickle
 #         'contributors': [
 #             {
 #                 "login": "liwen-tj",
+#                 "name": None,
+#                 "email": None,
 #                 "commits": 9
 #             }
 #         ]
 #     }
 # ]
 #
-def getData():
-    graduated, incubating = getCNCFProjects()
-    projects = graduated + incubating
-    for proj in projects:
-        proj['contributors'] = getStatsContributors(proj['address'])
-        print(proj['project'], len(proj['contributors']))
-
-    with open("projects.pkl", "wb") as f:
-        pickle.dump(projects, f)
-    return projects
 
 
-def commonContributors(p1, p2):
-    c1, c2 = [u['login'] for u in p1['contributors']], [u['login'] for u in p2['contributors']]
-    inter = set(c1).intersection(set(c2))
-    return {
-        "p1": p1['project'],
-        "p2": p2['project'],
-        "contributors": inter
-    } if len(inter) > 0 else None
+def howManyContributors(projects):
+    for p in projects:
+        print(p['address'], len(p['contributors']))
+    print(len(projects))
 
 
+# 我们遍历projects对象
+# 1. 对于不是匿名的贡献者，我们直接使用login
+# 2. 对于匿名的贡献者，我们根据email来查找login，如果找到login，那很好。否则，我们就把name/email作为id
 if __name__ == '__main__':
-    # data = getData()
-    with open("projects.pkl", "rb") as f:
-        data = pickle.load(f)
-    # N = len(data)
-    #
-    # intersects = []
-    # for i in range(N - 1):
-    #     for j in range(i + 1, N):
-    #         cc = commonContributors(data[i], data[j])
-    #         if cc is not None:
-    #             intersects.append(cc)
-    # print(intersects)
-    # 90d6ab8b868448f51d4207781399fd573cb00bf7
+    with open("final.pkl", "rb") as ff:
+        data = pickle.load(ff)
+    howManyContributors(data)
+
+
+
+
