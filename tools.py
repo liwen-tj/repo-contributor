@@ -45,7 +45,7 @@ def commonContributors(p1, p2):
 def fillNameAndEmail():
     with open("tmp/projects.pkl", "rb") as fp:
         projects = pickle.load(fp)
-    with open("users.pkl", "rb") as fu:
+    with open("tmp/users.pkl", "rb") as fu:
         users = pickle.load(fu)
     names = []
     for p in projects:
@@ -65,16 +65,16 @@ def fillNameAndEmail():
 
         print("---> total--anonymous-->", len(contributors), counter)
 
-    with open("names.pkl", "wb") as fn:
+    with open("tmp/names.pkl", "wb") as fn:
         pickle.dump(names, fn)
 
-    with open("data.pkl", "wb") as fd:
+    with open("tmp/data.pkl", "wb") as fd:
         pickle.dump(projects, fd)
 
 
 def getEmailLogin():
     email_login = {}
-    with open("users.pkl", "rb") as f_users:
+    with open("tmp/users.pkl", "rb") as f_users:
         users_info = pickle.load(f_users)
         for login in users_info:
             name_email = users_info[login]
@@ -85,7 +85,7 @@ def getEmailLogin():
 
 def fixProjects():
     el = getEmailLogin()
-    with open("data.pkl", "rb") as fp:
+    with open("tmp/data.pkl", "rb") as fp:
         projects = pickle.load(fp)
     for proj in projects:
         for c in proj['contributors']:

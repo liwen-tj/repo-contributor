@@ -19,9 +19,32 @@ import pickle
 
 
 def howManyContributors(projects):
+    total = 0
+    coders = {}
     for p in projects:
-        print(p['address'], len(p['contributors']))
-    print(len(projects))
+        pc = p['contributors']
+        total += len(pc)
+        for obj in pc:
+            c = obj['login']
+            if c in coders.keys():
+                coders[c].append(p['address'])
+            else:
+                coders[c] = [p['address']]
+
+    people = {}
+    for coder in coders:
+        index = len(coders[coder])
+        if index in people.keys():
+            people[index].append(coder)
+        else:
+            people[index] = [coder]
+
+    print(len(coders))
+    for i in range(1, 24):
+        if i in people.keys():
+            print(i, ":", len(people[i]))
+            if i > 7:
+                print(people[i])
 
 
 # 我们遍历projects对象
@@ -31,7 +54,4 @@ if __name__ == '__main__':
     with open("final.pkl", "rb") as ff:
         data = pickle.load(ff)
     howManyContributors(data)
-
-
-
 
